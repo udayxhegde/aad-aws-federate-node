@@ -56,6 +56,16 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENTID }}
         tenant-id: ${{ secrets.AZURE_TENANTID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
+    - name: 'Run az commands'
+      run: |
+        pwd
+        which az
+        az account show
+        echo $PATH
+        #which az
+        az --version
+        az group list
+        pwd
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v2
