@@ -67,6 +67,15 @@ jobs:
     # with:
       # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
     #   creds: ${{ secrets.SP_CREDS }}
+
+    - name: 'Run az commands'
+        run: |
+          pwd
+          which az
+          az account show
+          az group list
+          pwd   
+          
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
