@@ -67,10 +67,33 @@ jobs:
         az group list
         pwd
     - uses: actions/checkout@v2
+
+    - name: 'Run az commands'
+      run: |
+        pwd
+        which az
+        az account show
+        echo $PATH
+        #which az
+        az --version
+        az group list
+        pwd
+        
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
+
+    - name: 'Run az commands'
+      run: |
+        pwd
+        which az
+        az account show
+        echo $PATH
+        #which az
+        az --version
+        az group list
+        pwd
     - name: npm install, build, and test
       run: |
         # Build and test the project, then
