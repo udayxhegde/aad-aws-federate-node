@@ -17,13 +17,13 @@
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 on:
   push:
-    branches: [ github-fed ]
+    branches: [ github-fed-m ]
 
 permissions:
       id-token: write
       contents: write
 env:
-  AZURE_WEBAPP_NAME: githubfed    # set this to your application's name
+  AZURE_WEBAPP_NAME: githubfedm   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '12.x'                # set this to the node version to use
 
@@ -47,10 +47,9 @@ jobs:
     - name: 'Az CLI login'
       uses: azure/login@oidc-support
       with:
-        client-id: 2d9a5f07-e8ac-4ac5-9b86-1bea18475386
-        tenant-id: 7ebbc487-10c2-48f5-ae06-0c87eb0f1f11
-        subscription-id: b517f117-e955-4e05-93d7-76a8a0be4544
-
+      	client-id: ${{ secrets.AZURE_CLIENTID }}
+        tenant-id: ${{ secrets.AZURE_TENANTID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v2
