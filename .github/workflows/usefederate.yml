@@ -73,11 +73,12 @@ jobs:
         pwd
         which az
         az account show
-        az group list
+        echo $GITHUB_PATH
+        $CWD/oidc-venv/bin/az group list
         pwd   
 
     - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
+      uses: Azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
