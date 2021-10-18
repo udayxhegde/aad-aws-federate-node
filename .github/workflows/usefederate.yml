@@ -79,8 +79,10 @@ jobs:
         pwd
         which az
         az account show
-        echo $GITHUB_PATH
-        $CWD/oidc-venv/bin/az group list
+        echo $PATH
+        #which az
+        az --version
+        az group list
         pwd   
 
     - name: 'Deploy to Azure WebApp'
