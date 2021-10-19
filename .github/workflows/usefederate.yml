@@ -32,6 +32,8 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
+
+    - uses: actions/checkout@v2
     - name: Installing CLI-beta for OIDC
       run: |
         CWD="$(pwd)"
@@ -66,7 +68,7 @@ jobs:
         az --version
         az group list
         pwd
-    - uses: actions/checkout@v2
+
 
     - name: 'Run az commands'
       run: |
