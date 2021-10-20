@@ -21,6 +21,7 @@ on:
 
 permissions:
       id-token: write
+      contents: write
       
 env:
   AZURE_WEBAPP_NAME: githubfedm   # set this to your application's name
@@ -33,9 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v2
     - name: Installing CLI-beta for OIDC
       run: |
+        cd /home/runner/work
         CWD="$(pwd)"
         python3 -m venv oidc-venv
         . oidc-venv/bin/activate
@@ -80,7 +81,8 @@ jobs:
         az --version
         az group list
         pwd
-        
+    
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v2
       with:
