@@ -49,9 +49,9 @@ jobs:
     - name: 'Az CLI login'
       uses: azure/login@oidc-support
       with:
-        client-id: fc8e1c54-000e-4c85-a944-13a758808d20
-        tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
-        subscription-id: 22a08bf1-fb31-4757-a836-cd035976a2c0
+        client-id: ${{ secrets.AZURE_CLIENTID }}
+        tenant-id: ${{ secrets.AZURE_TENANTID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
     
   
     - uses: actions/checkout@v2
