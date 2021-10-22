@@ -52,14 +52,7 @@ jobs:
          echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
       id: idtoken
 
-    -run: |
-        which az
-        az account show
-        echo $PATH
-        #which az
-        az --version
-        az group list
-        pwd
+
     - name: 'Az CLI login'
       uses: azure/login@v1.4.0
       with:
