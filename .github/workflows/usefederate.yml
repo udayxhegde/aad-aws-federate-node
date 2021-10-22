@@ -34,7 +34,7 @@ jobs:
     steps:
     - name: Installing CLI-beta for OIDC
       run: |
-        cd /home/runner/work
+        cd ../..
         CWD="$(pwd)"
         python3 -m venv oidc-venv
         . oidc-venv/bin/activate
@@ -46,7 +46,7 @@ jobs:
         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
 
     - name: 'Az CLI login'
-      uses: azure/login@oidc-support
+      uses: azure/login@v1.0.4
       with:
         client-id: ${{ secrets.AZURE_CLIENTID }}
         tenant-id: ${{ secrets.AZURE_TENANTID }}
