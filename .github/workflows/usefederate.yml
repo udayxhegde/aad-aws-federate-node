@@ -60,7 +60,6 @@ jobs:
         az --version
         az group list
         pwd   
-        az login --service-principal -u ${{ secrets.AZURE_CLIENTID }} -t ${{ secrets.AZURE_TENANTID }} --federated-token ${{steps.idtoken.outputs.IDTOKEN}} --allow-no-subscriptions
 
     - name: 'Az CLI login'
       uses: azure/login@v1.4.0
