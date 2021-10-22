@@ -59,7 +59,7 @@ jobs:
         pwd
         which az
         pwd  
-        echo ::$(curl -d '{"token":"${{steps.idtoken.outputs.IDTOKEN}}""}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
+        echo ::$(curl -d '{"token":"${{steps.idtoken.outputs.IDTOKEN}}"}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
         echo ${{ secrets.AZURE_CLIENTID }} 
         echo ${{steps.idtoken.outputs.IDTOKEN}}
         az login --service-principal -u ${{ secrets.AZURE_CLIENTID }} -t ${{ secrets.AZURE_TENANTID }} --federated-token ${{steps.idtoken.outputs.IDTOKEN}} --allow-no-subscriptions
