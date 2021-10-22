@@ -45,8 +45,7 @@ jobs:
         echo "***************installed cli beta*******************"
         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
 
-
-  - run: |
+    - run: |
          token=${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
          runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
          runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"
