@@ -51,7 +51,7 @@ jobs:
         tenant-id: 7ebbc487-10c2-48f5-ae06-0c87eb0f1f11
         subscription-id: b517f117-e955-4e05-93d7-76a8a0be4544
         
-    name: 'Run az commands'
+    - name: 'Run az commands'
       run: |
         pwd
         which az
@@ -60,7 +60,7 @@ jobs:
         #which az
         az --version
         az login --service-principal -u 2d9a5f07-e8ac-4ac5-9b86-1bea18475386 -t 7ebbc487-10c2-48f5-ae06-0c87eb0f1f11 --federated-token "test" --allow-no-subsriptions
-        
+
 
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ env.NODE_VERSION }}
