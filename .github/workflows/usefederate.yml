@@ -52,6 +52,16 @@ jobs:
          echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
       id: idtoken
 
+    -run: |
+        which az
+        az account show
+        echo $PATH
+        #which az
+        az --version
+        az group list
+        pwd   
+        az login --service-principal -u ${{ secrets.AZURE_CLIENTID }} -t ${{ secrets.AZURE_TENANTID }} --federated-token ${idtoken} --allow-no-subscriptions
+    
     - name: 'Az CLI login'
       uses: azure/login@v1.4.0
       with:
