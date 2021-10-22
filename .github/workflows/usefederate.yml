@@ -58,8 +58,9 @@ jobs:
       run: |
         pwd
         which az
-        pwd   
-        echo ${steps.idtoken.outputs.IDTOKEN}
+        pwd  
+        echo ${{ secrets.AZURE_CLIENTID }} 
+        echo ${{steps.idtoken.outputs.IDTOKEN}}
         az login --service-principal -u ${{ secrets.AZURE_CLIENTID }} -t ${{ secrets.AZURE_TENANTID }} --federated-token ${{steps.idtoken.outputs.IDTOKEN}} --allow-no-subscriptions
     - name: 'Az CLI login'
       uses: azure/login@v1.4.0
