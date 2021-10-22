@@ -59,7 +59,8 @@ jobs:
         #which az
         az --version
         az group list
-        pwd   
+        pwd
+
 
     - name: 'Az CLI login'
       uses: azure/login@v1.4.0
