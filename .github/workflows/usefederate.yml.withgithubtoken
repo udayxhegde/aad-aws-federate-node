@@ -45,12 +45,30 @@ jobs:
         echo "***************installed cli beta*******************"
         echo "$CWD/oidc-venv/bin" >> $GITHUB_PATH
 
+    - run: |
+         token=${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
+         runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
+         runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"
+         echo $token
+         echo $runtimeUrl
+         echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
+      id: idtoken
+
+    - name: 'Run az commands'
+      run: |
+        pwd
+        which az
+        pwd  
+        echo $(curl -d '{"token":"${{steps.idtoken.outputs.IDTOKEN}}"}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
+        echo ${{ secrets.AZURE_CLIENTID }} 
+        echo ${{steps.idtoken.outputs.IDTOKEN}}
+        az login --service-principal -u ${{ secrets.AZURE_CLIENTID }} -t ${{ secrets.AZURE_TENANTID }} --federated-token ${{steps.idtoken.outputs.IDTOKEN}} --allow-no-subscriptions
     - name: 'Az CLI login'
       uses: azure/login@v1.4.0
       with:
-        client-id: fc8e1c54-000e-4c85-a944-13a758808d20
-        tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
-        subscription-id: 22a08bf1-fb31-4757-a836-cd035976a2c0
+        client-id: ${{ secrets.AZURE_CLIENTID }}
+        tenant-id: ${{ secrets.AZURE_TENANTID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTIONID }}
 
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ env.NODE_VERSION }}
