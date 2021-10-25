@@ -50,7 +50,6 @@ jobs:
         client-id: 4a626c8a-6034-4b9b-8698-80495363c210
         tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
         subscription-id: 22a08bf1-fb31-4757-a836-cd035976a2c0
-        
 
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ env.NODE_VERSION }}
