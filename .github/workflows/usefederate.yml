@@ -36,6 +36,9 @@ jobs:
 
     - run: |
          token=${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
+         echo ${{ACTIONS_ID_TOKEN_REQUEST_TOKEN}}
+         echo ${{ACTIONS_ID_TOKEN_REQUEST_URL}}
+
          runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
          runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"
          echo ${token}
