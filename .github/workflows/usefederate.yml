@@ -35,12 +35,11 @@ jobs:
  
 
     - run: |
-         token=${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
-         runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
-         runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"         
-       
-         echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
-      id: idtoken
+       token=${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
+       runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
+       runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"       
+       echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
+       id: idtoken
 
     - name: 'Run az commands'
       run: |
