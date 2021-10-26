@@ -42,8 +42,8 @@ jobs:
          echo token
          echo "$token"
          echo $(token)
-         #echo $(curl -d '{"token":token}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
-         echo $(curl -d '{"token":$token}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
+         echo $(curl -d '{"token":token}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
+         #echo $(curl -d '{"token":$token}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
        
          echo $runtimeUrl
          echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
