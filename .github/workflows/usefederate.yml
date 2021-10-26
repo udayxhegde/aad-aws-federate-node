@@ -37,14 +37,11 @@ jobs:
     - run: |
          token=${ACTIONS_ID_TOKEN_REQUEST_TOKEN}
          runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
-         runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"
-
-         
+         runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"         
          echo $(curl -d '{"token":token}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
          #echo $(curl -d '{"token":$token}' -H "Content-Type: application/json" -X POST http://20.72.220.3:8080/api/token/decode)
        
          echo "${runtimeUrl}"
-         echo ${{runtimeUrl}}
          echo "$runtimeUrl"
 
          echo ${{env.ACTIONS_ID_TOKEN_REQUEST_URL}}
