@@ -39,6 +39,7 @@ jobs:
          runtimeUrl=${ACTIONS_ID_TOKEN_REQUEST_URL}
          runtimeUrl="${runtimeUrl}&audience=api://AzureADTokenExchange"
          echo ${token}
+	
          echo token
          echo "${token}"
          echo $(token)
@@ -47,6 +48,7 @@ jobs:
        
          echo "${runtimeUrl}"
          echo ${{runtimeUrl}}
+         echo "$runtimeUrl"
          echo ::set-output name=IDTOKEN::$(curl -H "Authorization: bearer $token" $runtimeUrl | jq -r ".value")
       id: idtoken
 
